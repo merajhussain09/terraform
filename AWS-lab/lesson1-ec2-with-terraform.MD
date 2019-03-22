@@ -7,7 +7,7 @@ Terraform is a tool made by Hashicorp for building, changing, and versioning inf
 
 You can compare Terraform to Cloudformation . They are simililar but at the same time have differences.
 
-Steps to provision
+<h2>Steps to provision </h2>
 Download the terraform binary file https://www.terraform.io/downloads.html
 If MAC users have homebrew installed on their machine: Just do: brew install terraform Go to step 5
 
@@ -24,8 +24,8 @@ make a new directory(can be named anything) and go inside the directory
 mkdir terraform-july && cd terraform-july
 Paste this following code to a file called ec2.tf( can be anything.tf)
 minimal viable configuration
-<br>provider "aws" {
-  access_key = "ACCESS_KEY_HERE" <br>
+provider "aws" {
+  access_key = "ACCESS_KEY_HERE"
   secret_key = "SECRET_KEY_HERE"
   region     = "us-east-1"
 }
