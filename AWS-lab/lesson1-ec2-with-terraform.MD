@@ -24,8 +24,8 @@ make a new directory(can be named anything) and go inside the directory
 mkdir terraform-july && cd terraform-july
 Paste this following code to a file called ec2.tf( can be anything.tf)
 minimal viable configuration
-provider "aws" {
-  access_key = "ACCESS_KEY_HERE"
+<br>provider "aws" {
+  access_key = "ACCESS_KEY_HERE" <br>
   secret_key = "SECRET_KEY_HERE"
   region     = "us-east-1"
 }
