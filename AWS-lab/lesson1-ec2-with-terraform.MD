@@ -11,13 +11,14 @@ You can compare Terraform to Cloudformation . They are simililar but at the same
 Download the terraform binary file https://www.terraform.io/downloads.html
 If MAC users have homebrew installed on their machine: Just do: brew install terraform Go to step 5
 
-Extract the zip file
+1.Extract the zip file
 You will see the terraform binary executable file
 make sure that the terraform binary is available on the PATH.
 For Mac/Linux. On the shell/terminal, go to the folder where terraform binary is extracted
 
 echo $"export PATH=\$PATH:$(pwd)" >> ~/.bash_profile
 source ~/.bash_profile
+
 For Windows users : follow this to add Terraform to PATH https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows
 
 make a new directory(can be named anything) and go inside the directory
