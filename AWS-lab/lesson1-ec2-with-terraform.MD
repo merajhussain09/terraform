@@ -16,8 +16,11 @@ You will see the terraform binary executable file
 make sure that the terraform binary is available on the PATH.
 For Mac/Linux. On the shell/terminal, go to the folder where terraform binary is extracted
 
+<font color="green">
 echo $"export PATH=\$PATH:$(pwd)" >> ~/.bash_profile
+
 source ~/.bash_profile
+</font>
 
 For Windows users : follow this to add Terraform to PATH https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows
 
