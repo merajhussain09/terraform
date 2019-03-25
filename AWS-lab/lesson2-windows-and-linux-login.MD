@@ -7,8 +7,10 @@ In this lab, we will launch linux EC2 instance and ssh, and then launch a window
 
 1) Go to your AWS Management Console , navigate to the EC2 dashboard, click on Key Pairs. Click Create Key Pair. Enter a name like terraform-key and click create. 
 ![iam](https://github.com/ravsau/aws-labs/blob/master/images/key-pair.png)
-![iam] (https://github.com/ravsau/aws-labs/blob/master/images/Create-key-start.png)
-![iam] (https://github.com/ravsau/aws-labs/blob/master/images/Create-key.png)
+
+![iam](https://github.com/ravsau/aws-labs/blob/master/images/Create-key-start.png)
+
+![iam](https://github.com/ravsau/aws-labs/blob/master/images/Create-key.png)
 
 This will download a file to your computers default downloads folder. 
 
