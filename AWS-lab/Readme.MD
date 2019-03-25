@@ -67,10 +67,10 @@ First, go to the IAM management console
 ![iam](https://github.com/merajhussain09/terraform/blob/master/AWS-lab/images/Create-key-start.png)
 
 Then Click on the user's name and navigate to the security credentials tab. Click create access keys
-![iam](https://github.com/ravsau/aws-labs/blob/master/images/generate-access-keys.png)
+![iam](https://github.com/merajhussain09/terraform/blob/master/AWS-lab/images/generate-access-keys.png)
 
 Either download the csv file or, click show keys. Now you have both the access_key and secret_key required for the terraform code above.
-![iam](https://github.com/ravsau/aws-labs/blob/master/images/iam-generated-keys.png)
+![iam](https://github.com/merajhussain09/terraform/blob/master/AWS-lab/images/iam-generated-keys.png)
 
 
 
