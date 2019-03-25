@@ -6,11 +6,9 @@ In this lab, we will launch linux EC2 instance and ssh, and then launch a window
 ## Steps: 
 
 1) Go to your AWS Management Console , navigate to the EC2 dashboard, click on Key Pairs. Click Create Key Pair. Enter a name like terraform-key and click create. 
-![iam](https://github.com/ravsau/aws-labs/blob/master/images/key-pair.png)
-
-![iam](https://github.com/ravsau/aws-labs/blob/master/images/Create-key-start.png)
-
-![iam](https://github.com/ravsau/aws-labs/blob/master/images/Create-key.png)
+![key](../images/key-pair.png)
+![key](../images/Create-key-start.png)
+![key](../images/Create-key.png)
 
 This will download a file to your computers default downloads folder. 
 
@@ -60,8 +58,8 @@ Auto approve flag skips the yes/no question whether if you want to create the st
 - Once you get the password , download the RDP file
 - Open the downloaded RDP file. You will be asked for the pasword when Windows Remote desktop opens. Supply the pass. Note: If you don't have Remote Desktop Installed, you many need to install it. 
 
-![iam](https://github.com/ravsau/aws-labs/blob/master/images/decrypt-pass.png)
-![iam](https://github.com/ravsau/aws-labs/blob/master/images/windows.png)
+![key](../images/decrypt-pass.png)
+![key](../images/windows.png)
 
 5) You should be logged in now. 
 

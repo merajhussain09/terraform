@@ -1,20 +1,52 @@
-## Note
-Terraform v0.12 is about to be released soon. What we mention in this lesson may change with the new release as terraorm docs mention this.
->Terraform v0.12 will be a major release focused on configuration language improvements and thus will include some changes that you'll need to consider when upgrading.
 
-## Terraform working direcotory and the root module: how to break up configuration files ( templates)
-A module is a container for multiple resources that are used together.
+In this mini lab/lesson we are going to provision an EC2 using Hashicorps's terraform.
 
-Every Terraform configuration has at least one module, known as its root module, which consists of the resources defined in the .tf files in the main working directory.
+Reference:
+https://www.terraform.io/docs/providers/aws/index.html
+
+## What is Terraform? 
+
+Terraform is a tool made by Hashicorp for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers ( aws, azure, Google cloud) as well as custom in-house solutions.
+
+You can compare **Terraform** to **Cloudformation**
+. They are simililar but at the same time have differences.
 
 
-In the previous lessons, we had only one .tf file in the working directory when we called the terraform apply command.
 
 
-## Instead of having one .tf file that contains everything, we can break the resource blocks into multiple .tf files. When you call the terrform apply command, terraform applies code in all the .tf files in the working direcotory.
+### Steps to provision
 
-For example, instead of having this in ec2.tf file where provider block is included with the ec2 resource block:
+1) Download the terraform binary file 
+https://www.terraform.io/downloads.html
+
+> If MAC users have `homebrew` installed on their machine:
+> Just do: `brew install terraform`
+> Go to step `5`
+
+2) Extract the zip file
+3) You will see the terraform binary executable  file 
+4) make sure that the terraform binary is available on the PATH. 
+
+For Mac/Linux. On the shell/terminal,  go to the folder where terraform binary is extracted 
+```console
+echo $"export PATH=\$PATH:$(pwd)" >> ~/.bash_profile
+source ~/.bash_profile
 ```
+
+For Windows users : follow this to add Terraform to PATH https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows
+
+
+
+5) make a  new directory(can be named anything) and go inside the directory
+```console
+mkdir terraform-july && cd terraform-july
+```
+
+6) Paste this following code to a file called ec2.tf( can be anything.tf)
+
+#### minimal viable configuration
+
+```HCL
 provider "aws" {
   access_key = "ACCESS_KEY_HERE"
   secret_key = "SECRET_KEY_HERE"
@@ -22,92 +54,49 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
-  ami           = "ami-066663db63b3aa675"
+  ami           = "ami-2757f631"
   instance_type = "t2.micro"
-  key_name = "terraform-key"
-  security_groups = ["${aws_security_group.allow_rdp.name}"]
-
-}
-
-resource "aws_security_group" "allow_rdp" {
-  name        = "allow_rdp"
-  description = "Allow rdp traffic"
-
-
-  ingress {
-
-    from_port   = 3389 #  By default, the windows server listens on TCP port 3389 for RDP
-    to_port     = 3389
-    protocol =   "tcp"
-
-    cidr_blocks =  ["0.0.0.0/0"]
-  }
-}
-
-```
-
-
-We can break these blocks into multiple files.
-
-First, let's put the provider into a single **provider.tf** file
-```
-provider "aws" {
-  access_key = "ACCESS_KEY_HERE"
-  secret_key = "SECRET_KEY_HERE"
-  region     = "us-east-1"
-}
-
-```
-
-Then let's put ec2 resource in a **ec2.tf** file
-```
-resource "aws_instance" "example" {
-  ami           = "ami-066663db63b3aa675"
-  instance_type = "t2.micro"
-  key_name = "terraform-key"
-  security_groups = ["${aws_security_group.allow_rdp.name}"]
-
 }
 ```
 
-And finally, the security group in a seperate file **sg.tf**,
+#### Note:
+
+Replace the access_key and secret_access with your AWS IAM user credentials with enough permissions attached.
+You can go to IAM console on AWS to do this.
+First, go to the IAM management console 
+![iam](https://github.com/ravsau/aws-labs/blob/master/images/iam-console.png)
+
+Then Click on the user's name and navigate to the security credentials tab. Click create access keys
+![iam](https://github.com/ravsau/aws-labs/blob/master/images/generate-access-keys.png)
+
+Either download the csv file or, click show keys. Now you have both the access_key and secret_key required for the terraform code above.
+![iam](https://github.com/ravsau/aws-labs/blob/master/images/iam-generated-keys.png)
+
+
+
+
+If you've setup the AWS CLI and have credentials stored , you may skip the credential portion.
+This is what Hashicorp says "If you simply leave out AWS credentials, Terraform will automatically search for saved API credentials (for example, in ~/.aws/credentials) or IAM instance profile credentials. This option is much cleaner for situations where tf files are checked into source control"
+
+7) initialize the working directory for terraform
+```console 
+terraform init
 ```
-resource "aws_security_group" "allow_rdp" {
-  name        = "allow_rdp"
-  description = "Allow rdp traffic"
 
+"The terraform init command is used to initialize a working directory containing Terraform configuration files. This is the first command that should be run after writing a new Terraform configuration or cloning an existing one from version control. It is safe to run this command multiple times."
 
-  ingress {
-
-    from_port   = 3389 #  By default, the windows server listens on TCP port 3389 for RDP
-    to_port     = 3389
-    protocol =   "tcp"
-
-    cidr_blocks =  ["0.0.0.0/0"]
-  }
-}
-```
-
-When you call this command in the working directory with these 3 .tf files
-```
+8) Provision the ec2 with this command
+```console
 terraform apply
 ```
 
-**NOTE:you need to setup your keys in provider.tf and have a ec2 keypair with terraform-key to make this work. If you followed lesson 1 and 2 , you should be good.**
-
-Terraform combines code in all 3 .tf files and applies the changes.
-
-This let's you break your infrastructure code into multiple files which provides multiple benefits.
-
-  - you can put a certain file like provider.tf in gitignore so that you don't commit the provider settings to version control like github
-  - Multiple files are easier to work with.
-  - Compare this to cloudformation, where you have to use concept of nested stack , terraforms' approach looks much cleaner.
+9) Login to the AWS management console and navigate to the EC2 management console.  Check if an instance got provisioned
 
 
+10) From your terminal/command prompt/ shell , destory the resources
+```console
+terraform destroy
+```
 
-That's all for this lesson. See you in the next one.
 
-
-
-## Reference
-https://www.terraform.io/docs/configuration-0-11/modules.html
+That's it! you installed Terraform and used it to proision an EC2 instance. 
