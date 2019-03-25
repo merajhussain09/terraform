@@ -60,8 +60,8 @@ Auto approve flag skips the yes/no question whether if you want to create the st
 - Once you get the password , download the RDP file
 - Open the downloaded RDP file. You will be asked for the pasword when Windows Remote desktop opens. Supply the pass. Note: If you don't have Remote Desktop Installed, you many need to install it. 
 
-![key](../images/decrypt-pass.png)
-![key](../images/windows.png)
+![iam](https://github.com/ravsau/aws-labs/blob/master/images/decrypt-pass.png)
+![iam](https://github.com/ravsau/aws-labs/blob/master/images/windows.png)
 
 5) You should be logged in now. 
 
